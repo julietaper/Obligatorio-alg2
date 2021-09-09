@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-class AVL
-{
+
+class AVL{
+
 public:
     AVL()
     {
@@ -19,13 +20,6 @@ public:
         remove(root, data);
     }
 
-    bool contains(int data)
-    {
-        // recorrer avl y buscar el dato
-        return false;
-    }
-
-    // PRE: AVL is not empty
     int min()
     {
         return findMin(root)->data;
@@ -78,12 +72,10 @@ private:
         {
             if (height(node->left->left) >= height(node->left->right))
             {
-                // rotar derecha
                 rightRotation(node);
             }
             else
             {
-                // doble rotacion izq-der
                 leftRotation(node->left);
                 rightRotation(node);
             }
@@ -92,12 +84,10 @@ private:
         {
             if (height(node->right->right) >= height(node->right->left))
             {
-                // rotar izq
                 leftRotation(node);
             }
             else
             {
-                // doble rotacion der-izq
                 rightRotation(node->right);
                 leftRotation(node);
             }
