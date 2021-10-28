@@ -187,7 +187,6 @@ public:
 
 int main()
 {
-    freopen("msp1.in.txt", "r", stdin);
     int vertices, edges;
     cin >> vertices;
     cin >> edges;
@@ -208,7 +207,5 @@ int main()
         graph->insertarEdge(from, to, cost);
     }
     cout << graph->prim(true) << endl;
-    ;
-    fclose(stdin);
     return 0;
 }
