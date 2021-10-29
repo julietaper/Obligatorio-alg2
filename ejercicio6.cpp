@@ -12,7 +12,7 @@ public:
     Edge(int cost) : cost(cost), exists(true) {}
 };
 
-class Grafo
+class Graph
 {
 
 private:
@@ -33,29 +33,17 @@ private:
         return -1;
     }
 
-    int verticeNoVisDeMenorDist(int *dist, bool *vis)
-    {
-        int posMin = -1, min = INF;
-        for (int i = 0; i < length; i++)
-        {
-            if (!vis[i] && dist[i] < min)
-            {
-                min = dist[i];
-                posMin = i;
-            }
-        }
-        return posMin;
-    }
-
 public:
-    Grafo(int length)
+    Graph(int length)
     {
         this->length = length;
         this->cant = 0;
 
         this->vertices = new int *[length];
-        for (int i = 0; i < length; this->vertices[i++] = NULL)
-            ;
+        for (int i = 0; i < length; i++)
+        {
+            this->vertices[i] = NULL;
+        }
 
         this->mat = new Edge **[length];
 
@@ -72,7 +60,7 @@ public:
         }
     }
 
-    ~Grafo()
+    ~Graph()
     {
         for (int i = 0; i < length; i++)
         {
@@ -92,7 +80,7 @@ public:
         delete[] mat;
     }
 
-    void insertarVertice(int v)
+    void insertVertex(int v)
     {
         int pos = -1;
         for (int i = 0; i < length; i++)
@@ -107,8 +95,8 @@ public:
         cant++;
     }
 
-    // Pre: existsVertice(vOri) && existsVertice(vDes)
-    void insertarEdge(int vOri, int vDes, int cost)
+    // Pre: vDes and vOri already exist
+    void insertEdge(int vOri, int vDes, int cost)
     {
         int posOri = posVertex(vOri);
         int posDes = posVertex(vDes);
@@ -116,20 +104,7 @@ public:
         mat[posOri][posDes]->exists = true;
     }
 
-    // Pre: existsVertice(vOri) && existsVertice(vDes)
-    void borrarEdge(int vOri, int vDes)
-    {
-        int posOri = posVertex(vOri);
-        int posDes = posVertex(vDes);
-        mat[posOri][posDes]->exists = false;
-    }
-
-    bool existsVertice(int v)
-    {
-        return posVertex(v) != -1;
-    }
-
-    int prim(bool cubrirTodasLasComponentes)
+    int prim()
     {
         int pos = -1;
         for (int i = 0; i < length; i++)
@@ -190,11 +165,11 @@ int main()
     int vertices, edges;
     cin >> vertices;
     cin >> edges;
-    Grafo *graph = new Grafo(vertices);
+    Graph *graph = new Graph(vertices);
 
     for (int i = 1; i <= vertices; i++)
     {
-        graph->insertarVertice(i);
+        graph->insertVertex(i);
     }
     int from;
     int to;
@@ -204,8 +179,8 @@ int main()
         cin >> from;
         cin >> to;
         cin >> cost;
-        graph->insertarEdge(from, to, cost);
+        graph->insertEdge(from, to, cost);
     }
-    cout << graph->prim(true) << endl;
+    cout << graph->prim() << endl;
     return 0;
 }
