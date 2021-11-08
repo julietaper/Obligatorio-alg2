@@ -121,7 +121,7 @@ public:
         return this->vec[vertex - 1]->edgesCount;
     }
 
-    int dijkstra(int origen, int destino)
+    int dijkstra(int origin, int end)
     {
         int *dist = new int[tope];
         for (int i = 0; i < tope; i++)
@@ -129,10 +129,10 @@ public:
             dist[i] = 999999;
         }
 
-        dist[origen] = 0;
+        dist[origin] = 0;
 
         Queue *queue = new Queue();
-        queue->enqueue(origen);
+        queue->enqueue(origin);
         while (!queue->isEmpty())
         {
             int pos = queue->firstElem();
@@ -154,7 +154,7 @@ public:
                 edges = edges->next;
             }
         }
-        int distance = dist[destino] != 999999 ? dist[destino] : -1;
+        int distance = dist[end] != 999999 ? dist[end] : -1;
 
         delete[] dist;
         return distance;
