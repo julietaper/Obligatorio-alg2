@@ -127,27 +127,7 @@ public:
         }
     }
 
-    ~Graph()
-    {
-        for (int i = 0; i < tope; i++)
-        {
-            delete vertices[i];
-        }
-        delete[] vertices;
-
-        for (int i = 0; i < tope; i++)
-        {
-            for (int j = 0; j < tope; j++)
-            {
-                delete mat[i][j];
-            }
-
-            delete[] mat[i];
-        }
-        delete[] mat;
-    }
-
-    void insertarVertice(int v)
+    void addVertex(int v)
     {
         int pos = getHole();
         vertices[pos] = new int(v);
@@ -155,7 +135,7 @@ public:
     }
 
 
-    void insertarArista(int vOri, int vDes)
+    void addEdge(int vOri, int vDes)
     {
         int posOri = posVertex(vOri);
         int posDes = posVertex(vDes);
@@ -187,7 +167,7 @@ public:
                 }
             }
 
-            for(int i=0; i<tope; i++){
+            for(int i = 0; i < tope; i++){
                 if(!visited[i]){
                     s.push(i);
                     componentCount++;
@@ -197,12 +177,12 @@ public:
             }
         }
         return componentCount;
-
     }
 };
 
 int main()
 {
+
     int vertices, edges;
     cin >> vertices;
     cin >> edges;
@@ -210,7 +190,7 @@ int main()
 
     for (int i = 1; i <=vertices; i++)
     {
-        graph->insertarVertice(i);
+        graph->addVertex(i);
     }
     int from;
     int to;
@@ -218,8 +198,9 @@ int main()
     {
         cin >> from;
         cin >> to;
-        graph->insertarArista(from, to);
+        graph->addEdge(from, to);
     }
     cout << graph->ConnectedComponents(graph) << endl;
     return 0;
+
 }

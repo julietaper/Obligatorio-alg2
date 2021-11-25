@@ -60,26 +60,6 @@ public:
         }
     }
 
-    ~Graph()
-    {
-        for (int i = 0; i < length; i++)
-        {
-            delete vertices[i];
-        }
-        delete[] vertices;
-
-        for (int i = 0; i < length; i++)
-        {
-            for (int j = i; j < length; j++)
-            {
-                delete mat[i][j];
-            }
-
-            delete[] mat[i];
-        }
-        delete[] mat;
-    }
-
     void insertVertex(int v)
     {
         int pos = -1;

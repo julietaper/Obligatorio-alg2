@@ -91,7 +91,6 @@ class Graph{
 
 int main()
 {
-    freopen("10000.in.txt", "r", stdin);
     int v;
     cin >> v;
 
@@ -123,8 +122,6 @@ int main()
     {
         cout << "0" << endl;
     }
-
-    fclose(stdin);
 
     delete[] entryGrade;
     delete g;

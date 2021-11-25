@@ -87,8 +87,6 @@ void MinPases(int** mat,int rowCount, int colCount, int row, int col) {
             col = c->getMin()->dato2;
             c->dequeue();
 
-
-
             if((row + 1) < rowCount && mat[row+1][col] < 0 ){
                 mat[row+1][col] = -(mat[row+1][col]);  
 
